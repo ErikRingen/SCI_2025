@@ -1,7 +1,7 @@
 # SCI_2025
 Statistics &amp; Causal Inference PhD Course 2025
 
-This course introduces students to the use of probabilistic models to answer scientific questions. We will cover three core subjects: (i) probability theory, (ii) Bayesian statistics, and (iii) causal inference. We will also engage with some information theory. The goal is to develop a strong understanding of these fundamentals (which apply broadly across research areas) using Monte Carlo methods for simulation and estimation.
+This course is an ntroduction to the use of probabilistic models to answer scientific questions, aimed at graduate students in the social and biological sciences. We will cover three core subjects: (i) probability theory, (ii) Bayesian statistics, and (iii) causal inference. We will also engage with some information theory. The goal is to develop a strong understanding of these fundamentals (which apply broadly across research areas) using Monte Carlo methods for simulation and estimation.
 
 This course involves many hands-on exercises in R, because the only way to learn how to analyze data is to analyze *a lot* of data. Students should have the latest versions of R and Richard McElreath's `rethinking` package installed: https://github.com/rmcelreath/rethinking/. An IDE such as RStudio or VSCode is also highly reccomended. The course will be in English.
 
