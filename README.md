@@ -1,7 +1,7 @@
 # SCI_2025
 Statistics &amp; Causal Inference PhD Course 2025
 
-This course is an ntroduction to the use of probabilistic models to answer scientific questions, aimed at graduate students in the social and biological sciences. We will cover three core subjects: (i) probability theory, (ii) Bayesian statistics, and (iii) causal inference. We will also engage with some information theory. The goal is to develop a strong understanding of these fundamentals (which apply broadly across research areas) using Monte Carlo methods for simulation and estimation.
+This course is an introduction to the use of probabilistic models to answer scientific questions, aimed at graduate students in the social and biological sciences. We will cover three core subjects: (i) probability theory, (ii) Bayesian statistics, and (iii) causal inference. We will also engage with some information theory. The goal is to develop a strong understanding of these fundamentals (which apply broadly across research areas) using Monte Carlo methods for simulation and estimation.
 
 This course involves many hands-on exercises in R, because the only way to learn how to analyze data is to analyze *a lot* of data. Students should have the latest versions of R and Richard McElreath's `rethinking` package installed: https://github.com/rmcelreath/rethinking/. An IDE such as RStudio or VSCode is also highly reccomended. The course will be in English.
 
@@ -15,19 +15,19 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 
 | Week ## | Meeting date | Reading | Lectures |
 | ------- | -------------- | ------------- | ---------------------- |
-| Week 01 | 21 February  | TBA | TBA
-| Week 02 | 28 February  | TBA | TBA
-| Week 03 | 7 March  | TBA | TBA
-| Week 04 | 14 March  | TBA | TBA
-| Week 05 | 21 March  | TBA | TBA
-| Week 06 | 28 March  | TBA | TBA
-| Week 07 | 4 April  | TBA | TBA
-| Week 08 | 11 April  | TBA | TBA
+| Week 01: Probability, Bayes' Rule | 21 February  | TBA | TBA
+| Week 02: Samples and Simulations | 28 February  | TBA | TBA
+| Week 03: Linear Regression | 7 March  | TBA | TBA
+| Week 04: Causal Inference I: DAGs, Confounders, Counterfactuals | 14 March  | TBA | TBA
+| Week 05: Causal Inference II: Mediation, Colliders | 21 March  | TBA | TBA
+| Week 06: Causal Inference III: Estimands, estimators | 28 March  | TBA | TBA
+| Week 07: Information, Prediction, and Model Comparison | 4 April  | TBA | TBA
+| Week 08: Interactions and non-parametric statistics | 11 April  | TBA | TBA
 | spring break |
-| Week 09 | 2 May  | TBA | TBA
-| Week 10 | 9 May  | TBA | TBA
-| Week 11 | 16 May  | TBA | TBA
-| Week 12 | 23 May  | TBA | TBA
+| Week 09: Markov Chain Monte Carlo | 2 May  | TBA | TBA
+| Week 10: Generalized Linear Models | 9 May  | TBA | TBA
+| Week 11: Multilevel Models | 16 May  | TBA | TBA
+| Week 12: Gaussian Processes & Generalized Additive Models | 23 May  | TBA | TBA
 
 ## Prerequisites
 
