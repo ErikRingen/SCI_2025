@@ -31,7 +31,9 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 
 ## Prerequisites
 
-The mathematical pre-reqs for this course are light. I assume that you have taken high-school level algebra and are comfortable with plotting functions in a Cartesian plane e.g., y = mx + b and understand basic descriptive statistics/data visualizations such as scatterplots, histograms. On the coding side, *I highly reccomend that you have some experience programming in R*, because it is very challening to learn the modelling and programming for the first time simulataneously.
+The mathematical pre-reqs for this course are light. I assume that you have taken high-school level algebra and are comfortable with plotting functions in a Cartesian plane e.g., y = mx + b and understand basic descriptive statistics/data visualizations such as scatterplots, histograms. 
+
+On the coding side, *I highly reccomend that you have some experience programming in R*, because it is very challening to learn the modelling and programming for the first time simulataneously. You do not need to be an expert, but should have a minimum 1 semester worth of experience in R to get the most out of this course.
 
 ## Graded components
 
