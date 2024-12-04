@@ -7,13 +7,13 @@ This course involves many hands-on exercises in R, because the only way to learn
 
 ## Accessing course content and attending class
 
-We will meet on Fridays via Zoom at TBA, with the meeting link shared to registered participants. The course will feature "flipped" instruction: participants should come already having watched lectures and attempted the exercises for the week, and our class time will be used to solve problems together. Lectures and readings will be posted at least one week in advance.
+We will meet on Fridays via Zoom from 15:00 - 16:15, with the meeting link shared to registered participants. The course will feature "flipped" instruction: participants should come already having watched lectures and attempted the exercises for the week, and our class time will be used to solve problems together. Lectures and readings will be posted at least one week in advance.
 
 The primary text for this course is the [2nd edition of Statistical Rethinking](https://github.com/rmcelreath/rethinking/). It is available as both a physical book and an eBook. A full series of lectures by the author is [available for free on YouTube](https://www.youtube.com/playlist?list=PLDcUM9US4XdMROZ57-OIRtIK0aOynbgZN).
 
 ## Course schedule
 
-| Week ## | Meeting date | Reading | Lectures |
+| Week # | Meeting date | Reading | Lectures |
 | ------- | -------------- | ------------- | ---------------------- |
 | Week 01: Probability, Bayes' Rule | 21 February  | TBA | TBA
 | Week 02: Samples and Simulations | 28 February  | TBA | TBA
@@ -37,7 +37,7 @@ On the coding side, *I highly reccomend that you have some experience programmin
 
 ## Graded components
 
-If you are taking this course for ECTS credits, there are two graded components: (1) weekly exercises to assess your understanding of the materials, worth 75% of your grade and (2) class participation where you will be asked to give a brief (1-2 minute) summary/reflection of the the weeks' materials and pose a question or two for the class to discuss, worth 25% of your grade. The latter will be done pseudo-randomly, such that *you will not know in advance whether it is one of your weeks to summarise*.
+If you are taking this course for ECTS credits, there are two graded components: (1) weekly homework exercises to assess your understanding of the materials, worth 75% of your grade and (2) class participation where you will be asked to give a brief (1-2 minute) summary/reflection of the the weeks' materials and pose a question or two for the class to discuss, worth 25% of your grade. The latter will be done pseudo-randomly, such that *you will not know in advance whether it is one of your weeks to summarise*.
 
 
 
