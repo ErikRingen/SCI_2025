@@ -22,7 +22,7 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 | Week 05: Causal Inference II: Mediation, Colliders | 21 March  | TBA | TBA
 | Week 06: Causal Inference III: Estimands, estimators | 28 March  | TBA | TBA
 | Week 07: Information, Prediction, and Model Comparison | 4 April  | TBA | TBA
-| Week 08: Interactions and non-parametric statistics | 11 April  | TBA | TBA
+| Week 08: Interactions and non-linearity | 11 April  | TBA | TBA
 | spring break |
 | Week 09: Markov Chain Monte Carlo | 2 May  | TBA | TBA
 | Week 10: Generalized Linear Models | 9 May  | TBA | TBA
