@@ -13,21 +13,21 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 
 ## Course schedule (subject to change)
 
-| Week # | Meeting date | Reading | Lectures |
+| Week # | Meeting date | Reading | Lectures | Homework
 | ------- | -------------- | ------------- | ---------------------- |
-| Week 01: Probability, Bayes' Rule | 21 February  | Rethiking Ch. 2.0-2.3 (pp. 19-38) | No homework
-| Week 02: Samples and Simulations | 28 February  | Rethinking Ch. 2.4-3 (pp. 39-68) | TBA
-| Week 03: Linear Regression | 7 March  | Rethinking Ch. 4.0-4.5.1 (pp. 71-114) | TBA
-| Week 04: Causal Inference I: DAGs, Confounders, Counterfactuals | 14 March  | Rethinking Ch. 5 (pp. 123-158) | TBA
-| Week 05: Causal Inference II: Mediation, Colliders | 21 March  | Rethinking Ch. 6 (pp. 161-189) | TBA
-| Week 06: Causal Inference III: Estimands, estimators | 28 March  | Lundberg et al. (2021). What is your estimand? Defining the target quantity connects statistical evidence to theory. | TBA
-| Week 07: Information, Prediction, and Model Comparison | 4 April  | Rethinking Ch. 7 (pp. 191-235) | TBA
-| Week 08: Interactions and non-linearity | 11 April  | Rethinking Ch. 8 (pp. 237-260) | TBA
+| Week 01: Probability, Bayes' Rule | 21 February  | Rethiking Ch. 2.0-2.3 (pp. 19-38) | https://youtu.be/xB5GWDfZWyw | No homework
+| Week 02: Samples and Simulations | 28 February  | Rethinking Ch. 2.4-3 (pp. 39-68) | | TBA
+| Week 03: Linear Regression | 7 March  | Rethinking Ch. 4.0-4.5.1 (pp. 71-114) | | TBA
+| Week 04: Causal Inference I: DAGs, Confounders, Counterfactuals | 14 March  | Rethinking Ch. 5 (pp. 123-158) | | TBA
+| Week 05: Causal Inference II: Mediation, Colliders | 21 March  | Rethinking Ch. 6 (pp. 161-189) | | TBA
+| Week 06: Causal Inference III: Estimands, estimators | 28 March  | Lundberg et al. (2021). What is your estimand? Defining the target quantity connects statistical evidence to theory. | | TBA
+| Week 07: Information, Prediction, and Model Comparison | 4 April  | Rethinking Ch. 7 (pp. 191-235) | | TBA
+| Week 08: Interactions and non-linearity | 11 April  | Rethinking Ch. 8 (pp. 237-260) | | TBA
 | spring break |
-| Week 09: Markov Chain Monte Carlo | 2 May  | Rethinking Ch. 9 (pp. 263-296) | TBA
-| Week 10: Generalized Linear Models | 9 May  | Rethinking Ch. 10 (pp. 299-321) | TBA
-| Week 11: Multilevel Models | 16 May  | Rethinking Ch. 13 (pp. 399-431) | TBA
-| Week 12: Gaussian Processes & Generalized Additive Models | 23 May | Rethinking Ch. 14 (pp. 435-485) | TBA
+| Week 09: Markov Chain Monte Carlo | 2 May  | Rethinking Ch. 9 (pp. 263-296) | | TBA
+| Week 10: Generalized Linear Models | 9 May  | Rethinking Ch. 10 (pp. 299-321) | | TBA
+| Week 11: Multilevel Models | 16 May  | Rethinking Ch. 13 (pp. 399-431) | | TBA
+| Week 12: Gaussian Processes & Generalized Additive Models | 23 May | Rethinking Ch. 14 (pp. 435-485) | | TBA
 
 ## Prerequisites
 
