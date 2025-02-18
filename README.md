@@ -13,8 +13,8 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 
 ## Course schedule (subject to change)
 
-| Week # | Meeting date | Reading | Lectures | Homework
-| ------- | -------------- | ------------- | ---------------------- |
+| Week # | Meeting date | Reading | Lectures | Homework |
+| ------- | -------------- | ------------- | ---------------- | ---------------------- |
 | Week 01: Probability, Bayes' Rule | 21 February  | Rethiking Ch. 2.0-2.3 (pp. 19-38) | https://youtu.be/xB5GWDfZWyw | No homework
 | Week 02: Samples and Simulations | 28 February  | Rethinking Ch. 2.4-3 (pp. 39-68) | | TBA
 | Week 03: Linear Regression | 7 March  | Rethinking Ch. 4.0-4.5.1 (pp. 71-114) | | TBA
