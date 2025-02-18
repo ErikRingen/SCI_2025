@@ -15,8 +15,8 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 
 | Week # | Meeting date | Reading | Lectures |
 | ------- | -------------- | ------------- | ---------------------- |
-| Week 01: Probability, Bayes' Rule | 21 February  | Rethiking Ch. 2.0-2.3 (pp. 19-36) | No homework
-| Week 02: Samples and Simulations | 28 February  | Rethinking Ch. 2.4-3 (pp. 37-68) | TBA
+| Week 01: Probability, Bayes' Rule | 21 February  | Rethiking Ch. 2.0-2.3 (pp. 19-38) | No homework
+| Week 02: Samples and Simulations | 28 February  | Rethinking Ch. 2.4-3 (pp. 39-68) | TBA
 | Week 03: Linear Regression | 7 March  | Rethinking Ch. 4.0-4.5.1 (pp. 71-114) | TBA
 | Week 04: Causal Inference I: DAGs, Confounders, Counterfactuals | 14 March  | Rethinking Ch. 5 (pp. 123-158) | TBA
 | Week 05: Causal Inference II: Mediation, Colliders | 21 March  | Rethinking Ch. 6 (pp. 161-189) | TBA
