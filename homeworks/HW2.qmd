@@ -1,0 +1,63 @@
+---
+title: "SCI 2025: Homework 2"
+format: 
+  pdf:
+    geometry: margin=1in
+    fontsize: 12pt
+    linestretch: 1.5
+    include-in-header:
+      text: |
+        \usepackage{amsmath}
+        \usepackage{amsfonts}
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Setup
+
+In this homework, we will work with data from:
+
+Nettle, D. (1998). Explaining global patterns of language diversity. *Journal of Anthropological Archaeology*, 17:354–74.
+
+First, load the data into your R session.
+
+```{r, echo=TRUE}
+library(rethinking)
+data(nettle)
+head(nettle)
+```
+
+The meaning of each column in the dataset is given below:
+
+(1) country: Name of the country
+(2) num.lang: Number of recognized languages spoken
+(3) area: Area in square kilometers
+(4) k.pop: Population, in thousands
+(5) num.stations: Number of weather stations that provided data for the next two columns
+(6) mean.growing.season: Average length of growing season,in months
+(7) sd.growing.season: Standard deviation of length of growing season,in months
+
+You should use quadratic approximation via `rethinking::quap()` for all model fitting.
+
+## Question 1
+
+Write down a mathematical model that describes a linear regression of the number of languages spoken (`num.lang`) as a function of the population of the country (`k.pop`). Use similar notation to the textbook chapter. Be sure to include prior definitions for all parameters. You may apply any transformations to the data that you think are appropriate.
+
+## Question 2
+
+Implement the model you wrote down in Question 1 using `rethinking::quap()`. Print the model summary.
+
+## Question 3
+
+Perform a posterior predictive check on the model you fit in Question 2. You should plot the posterior function relating the number of languages spoken to the population of the country. Represent uncertainty either by drawing lines from the posterior or by plotting a credible/highest posterior density interval. Be sure to also plot the raw data.
+
+## Question 4
+
+Visually compare the prior and posterior distributions of the *parameters* from the model you fit in Question 2.
+
+## Question 5
+
+Using insights from Questions 3-4, try to improve upon the model you fit in Question 2. Justify your changes, fit the new model, and perform a new posterior predictive check.
+
