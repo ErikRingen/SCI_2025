@@ -17,7 +17,7 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 | ------- | -------------- | ------------- | ---------------- | ---------------------- |
 | Week 01: Probability, Bayes' Rule | 21 February  | Rethiking Ch. 2.0-2.3 (pp. 19-38) | https://youtu.be/xB5GWDfZWyw | No homework
 | Week 02: Samples and Simulations | 28 February  | Rethinking Ch. 2.4-3 (pp. 39-68) | https://youtu.be/JAwWjHxcu44 | [Homework 1](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW1.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW1_solutions.pdf)
-| Week 03: Linear Regression | 7 March  | Rethinking Ch. 4.0-4.5.1 (pp. 71-114) | https://youtu.be/fAVCxP80kCk | [Homework 2](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW2.pdf)
+| Week 03: Linear Regression | 7 March  | Rethinking Ch. 4.0-4.5.1 (pp. 71-114) | https://youtu.be/fAVCxP80kCk | [Homework 2](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW2.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW2_solutions.pdf)
 | Week 04: Causal Inference I: DAGs, Confounders, Counterfactuals | 14 March  | Rethinking Ch. 5 (pp. 123-158) | https://youtu.be/ajocBTi-tFI | TBA
 | Week 05: Causal Inference II: Mediation, Colliders | 21 March  | Rethinking Ch. 6 (pp. 161-189) | | TBA
 | Week 06: Causal Inference III: Estimands, estimators | 28 March  | Lundberg et al. (2021). What is your estimand? Defining the target quantity connects statistical evidence to theory. | | TBA
