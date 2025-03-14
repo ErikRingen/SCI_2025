@@ -64,3 +64,10 @@ Please send all questions and homework submissions to ringen.erik@gmail.com.
 ## Office Hours
 
 Office hours with Erik are available by request.
+
+## Additional Resources
+
+Adjustment via Propensity Scores & Inverse Treatment Weights: https://www.andrewheiss.com/blog/2021/12/18/bayesian-propensity-scores-weights/
+Adjustment via Matching Methods: https://www.andrewheiss.com/blog/2020/02/25/closing-backdoors-dags/#adjustment-using-matching-with-mahalanobis-distance
+
+Neuroscience + causal inference: https://www.sciencedirect.com/science/article/pii/S1878929324001269
