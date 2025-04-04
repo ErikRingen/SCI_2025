@@ -36,7 +36,8 @@ plot(tax_revenue ~ tax_rate, data = Laffer)
 m1 <- quap(
     alist(
         tax_revenue ~ dnorm(mu, sigma),
-        mu <- a + b * (tax_rate - mean(tax_rate)),
+        mu <- a + 
+        b * (tax_rate - mean(tax_rate)),
         a ~ dnorm(3, 4),
         b ~ dnorm(0, 0.1),
         sigma ~ dexp(1)
@@ -49,7 +50,9 @@ precis(m1)
 m2 <- quap(
     alist(
         tax_revenue ~ dnorm(mu, sigma),
-        mu <- a + b * (tax_rate - mean(tax_rate)) + b2 * (tax_rate - mean(tax_rate))^2,
+        mu <- a +
+        b * (tax_rate - mean(tax_rate)) + 
+        b2 * (tax_rate - mean(tax_rate))^2,
         a ~ dnorm(3, 4),
         b ~ dnorm(0, 0.1),
         b2 ~ dnorm(0, 0.1),
@@ -75,8 +78,10 @@ lines(tax_rate_seq, colMeans(mu_m1), col = "coral", lwd = 2)
 lines(tax_rate_seq, colMeans(mu_m2), col = "steelblue", lwd = 2)
 
 # plot the uncertainty  
-shade(apply(mu_m1, 2, PI), tax_rate_seq, col = col.alpha("coral", 0.3))
-shade(apply(mu_m2, 2, PI), tax_rate_seq, col = col.alpha("steelblue", 0.3))
+shade(apply(mu_m1, 2, PI), tax_rate_seq,
+ col = col.alpha("coral", 0.3))
+shade(apply(mu_m2, 2, PI), tax_rate_seq,
+ col = col.alpha("steelblue", 0.3))
 
 # plot the data points
 points(tax_revenue ~ tax_rate, data = Laffer)
@@ -90,7 +95,11 @@ PSIS(m2, pointwise = TRUE)
 
 ```{r}  
 # color code the points by pareto k statistic
-points(Laffer$tax_rate, Laffer$tax_revenue, col = ifelse(PSIS(m2, pointwise = TRUE)$k > 0.7, "red", "black"), pch = 16)
+plot(Laffer$tax_rate, Laffer$tax_revenue,
+ col = ifelse(
+    PSIS(m2, pointwise = TRUE)$k > 0.7,
+     "red",
+     "black"), pch = 16)
 ```
 
 ## Question 2: 7H2
@@ -105,7 +114,9 @@ WAIC(m2, pointwise = TRUE)
 m3 <- quap(
     alist(
         tax_revenue ~ dstudent(2, mu, sigma),
-        mu <- a + b * (tax_rate - mean(tax_rate)) + b2 * (tax_rate - mean(tax_rate))^2,
+        mu <- a + 
+        b * (tax_rate - mean(tax_rate)) + 
+        b2 * (tax_rate - mean(tax_rate))^2,
         a ~ dnorm(3, 4),
         b ~ dnorm(0, 0.1),
         b2 ~ dnorm(0, 0.1),
@@ -120,8 +131,10 @@ precis(m3)
 mu_m3 <- link(m3, data = data.frame(tax_rate = tax_rate_seq))
 
 plot(tax_revenue ~ tax_rate, data = Laffer)
-lines(tax_rate_seq, colMeans(mu_m3), col = "steelblue", lwd = 2)
-shade(apply(mu_m3, 2, PI), tax_rate_seq, col = col.alpha("steelblue", 0.3))
+lines(tax_rate_seq, colMeans(mu_m3),
+ col = "steelblue", lwd = 2)
+shade(apply(mu_m3, 2, PI), tax_rate_seq,
+ col = col.alpha("steelblue", 0.3))
 ```
 
 ## Question 3
@@ -164,7 +177,8 @@ mu_m3_train <- sim(m3_train, data = data.frame(tax_rate = train_data$tax_rate))
 plot(tax_revenue ~ tax_rate, data = train_data, xlim = range(Laffer$tax_rate), ylim = range(Laffer$tax_revenue)*1.5)
 
 for (i in 1:nrow(train_data)) {
-    lines(x=rep(train_data$tax_rate[i], 2), y=HPDI(mu_m3_train[i, ]), col = col.alpha("black", 0.8), lwd = 2)
+    lines(x=rep(train_data$tax_rate[i], 2), y=HPDI(mu_m3_train[i, ]),
+     col = col.alpha("black", 0.8), lwd = 2)
 }
 
 # now make predictions for the test data
@@ -173,7 +187,8 @@ mu_m3_test <- sim(m3_train, data = data.frame(tax_rate = test_data$tax_rate))
 points(tax_revenue ~ tax_rate, data = test_data, col = "orange")
 
 for (i in 1:nrow(test_data)) {
-    lines(x=rep(test_data$tax_rate[i], 2), y=HPDI(mu_m3_test[i, ]), col = col.alpha("orange", 0.8), lwd = 2)
+    lines(x=rep(test_data$tax_rate[i], 2), y=HPDI(mu_m3_test[i, ]),
+     col = col.alpha("orange", 0.8), lwd = 2)
 }
 
 ```
@@ -207,10 +222,13 @@ tax_rate_seq <- seq(min(Laffer$tax_rate), max(Laffer$tax_rate), length.out = 100
 
 mu_m3 <- link(m3_train, data = data.frame(tax_rate = tax_rate_seq))
 
-plot(tax_revenue ~ tax_rate, data = train_data, xlim = range(Laffer$tax_rate), ylim = range(Laffer$tax_revenue)*1.5)
+plot(tax_revenue ~ tax_rate, data = train_data,
+ xlim = range(Laffer$tax_rate),
+  ylim = range(Laffer$tax_revenue)*1.5)
 
 lines(tax_rate_seq, colMeans(mu_m3), col = "steelblue", lwd = 2)
-shade(apply(mu_m3, 2, PI), tax_rate_seq, col = col.alpha("steelblue", 0.3))
+shade(apply(mu_m3, 2, PI), tax_rate_seq,
+ col = col.alpha("steelblue", 0.3))
 
 ```
 
@@ -219,19 +237,29 @@ shade(apply(mu_m3, 2, PI), tax_rate_seq, col = col.alpha("steelblue", 0.3))
 
 mu_m3_train <- sim(m3_train, data = data.frame(tax_rate = train_data$tax_rate))
 
-plot(tax_revenue ~ tax_rate, data = train_data, xlim = range(Laffer$tax_rate), ylim = range(Laffer$tax_revenue)*1.5)
+plot(tax_revenue ~ tax_rate,
+ data = train_data,
+  xlim = range(Laffer$tax_rate),
+   ylim = range(Laffer$tax_revenue)*1.5)
 
 for (i in 1:nrow(train_data)) {
-    lines(x=rep(train_data$tax_rate[i], 2), y=HPDI(mu_m3_train[i, ]), col = col.alpha("black", 0.8), lwd = 2)
+    lines(
+        x=rep(train_data$tax_rate[i], 2),
+         y=HPDI(mu_m3_train[i, ]),
+          col = col.alpha("black", 0.8),
+           lwd = 2)
 }
 
 # now make predictions for the test data
 mu_m3_test <- sim(m3_train, data = data.frame(tax_rate = test_data$tax_rate))
 
-points(tax_revenue ~ tax_rate, data = test_data, col = "orange")
+points(tax_revenue ~ tax_rate,
+ data = test_data,
+  col = "orange")
 
 for (i in 1:nrow(test_data)) {
-    lines(x=rep(test_data$tax_rate[i], 2), y=HPDI(mu_m3_test[i, ]), col = col.alpha("orange", 0.8), lwd = 2)
+    lines(x=rep(test_data$tax_rate[i], 2), y=HPDI(mu_m3_test[i, ]),
+     col = col.alpha("orange", 0.8), lwd = 2)
 }
 ```
 
