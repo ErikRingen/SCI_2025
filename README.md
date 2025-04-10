@@ -13,7 +13,7 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 
 ## Course schedule (subject to change)
 
-| Week # | Meeting date | Reading | Lectures | Homework |
+| Week # | Meeting date | Reading | Mini-Lectures | Homework |
 | ------- | -------------- | ------------- | ---------------- | ---------------------- |
 | Week 01: Probability, Bayes' Rule | 21 February  | Rethiking Ch. 2.0-2.3 (pp. 19-38) | https://youtu.be/xB5GWDfZWyw | No homework
 | Week 02: Samples and Simulations | 28 February  | Rethinking Ch. 2.4-3 (pp. 39-68) | https://youtu.be/JAwWjHxcu44 | [Homework 1](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW1.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW1_solutions.pdf)
