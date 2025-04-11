@@ -109,7 +109,9 @@ precis(model2)
 
 prior <- extract.prior(model2)
 
-prior_mu <- sapply(1:500, function(i) prior$a[i] + prior$b[i]*d$age_c + prior$b_sex[i]*d$male + prior$b_age_sex[i]*d$age_c*d$male)
+prior_mu <- sapply(1:500, function(i) prior$a[i] + prior$b[i]*d$age_c + prior$b_male[i]*d$male + prior$b_age_male[i]*d$age_c*d$male)
+
+str(prior_mu)
 
 # prior predictive check
 dens(prior_mu[d$male == 1, ], col = "orange")
