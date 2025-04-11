@@ -22,7 +22,7 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 | Week 05: Causal Inference II: Mediation, Colliders | 21 March  | Rethinking Ch. 6 (pp. 161-189) | https://youtu.be/wGblB6IY2ns | [Homework 4](http://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW4.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW4_solutions.pdf)
 | Week 06: Causal Inference III: Estimands, estimators (**NO CLASS MEETING**)  | 28 March  | [Lundberg et al. (2021). What is your estimand? Defining the target quantity connects statistical evidence to theory](https://osf.io/ba67n/download/) | https://youtu.be/JGHuiwg4KDI | No homework
 | Week 07: Information, Prediction, and Model Comparison | 4 April  | Rethinking Ch. 7 (pp. 191-235) | https://youtu.be/tO4oYTGj36I | [Homework 5](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW5.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW5_solutions.pdf)
-| Week 08: Interactions and non-linearity | 11 April  | Rethinking Ch. 8 (pp. 237-260) | https://youtu.be/EG44N2jHzi8 | [Homework 6](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW6.pdf)
+| Week 08: Interactions and non-linearity | 11 April  | Rethinking Ch. 8 (pp. 237-260) | https://youtu.be/EG44N2jHzi8 | [Homework 6](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW6.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW6_solutions.pdf)
 | spring break |
 | Week 09: Markov Chain Monte Carlo | 2 May  | Rethinking Ch. 9 (pp. 263-296) | | TBA
 | Week 10: Generalized Linear Models | 9 May  | Rethinking Ch. 10 (pp. 299-321) | | TBA
