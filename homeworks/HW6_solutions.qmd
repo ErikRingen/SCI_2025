@@ -1,0 +1,311 @@
+---
+title: "SCI 2025: Homework 6"
+format: 
+  pdf:
+    geometry: margin=1in
+    fontsize: 12pt
+    linestretch: 1.5
+    include-in-header:
+      text: |
+        \usepackage{amsmath}
+        \usepackage{amsfonts}
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Setup
+
+In this homework, we'll revisit the Howell data from Chapter 4, this time with an emphasis on interactions.
+
+```{r}
+library(rethinking)
+data(Howell1)
+
+d <- Howell1
+
+plot(d$height ~ d$age, col = ifelse(d$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,  # solid circle points
+     xlab = "Age", ylab = "Height",
+     main = "")
+legend("topleft", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+```
+
+It seems that there is an interaction between age and sex (male/female) in determining height. Let's fit a model to this data, assuming the following DAG:
+
+```{r}
+library(dagitty)
+dag <- dagitty(
+  "dag {
+    age -> height
+    sex -> height
+    }"
+)
+
+plot(dag)
+```
+
+## Question 1:
+
+First, fit a model that predicts height using only age, and not sex. You may use a linear or non-linear function, and you may wish to perform some data transformations such as standardization. As always, be thoughtful about your priors.
+
+After fitting the model, plot the residuals as a function of age. Indicate which residuals are males and which are females, either by color, symbol, or some other visual indicator. What do you notice?
+
+```{r}
+mean(d$height)
+sd(d$height)
+
+d$age_c <- (d$age - mean(d$age))
+
+model1 <- quap(
+  alist(
+    height ~ dnorm(mu, sigma),
+    mu <- a + b*age_c,
+    a ~ dnorm(138, 40),
+    b ~ dnorm(0, 5),
+    sigma ~ dexp(0.1)
+  ), data = d
+)
+
+precis(model1)
+```
+
+```{r}
+epred_model1 <- link(model1)
+resid <- d$height - apply(epred_model1, 2, mean)
+
+plot(resid ~ d$age, col = ifelse(d$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,
+     xlab = "Age", ylab = "Residuals")
+abline(h = 0, lty = 2)
+legend("topright", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+```
+
+## Question 2:
+
+Now, fit a model that predicts height using both age and sex. You should also include an interaction between age and sex. Once again, plot the residuals as a function of age with an indicator of sex. What do you notice?
+
+You should also plot the predicted height as a function of age for males and females separately.
+
+```{r}
+model2 <- quap(
+  alist(
+    height ~ dnorm(mu, sigma),
+    mu <- a + b*age_c + b_male*male + b_age_male*age_c*male,
+    a ~ dnorm(138, 40),
+    b ~ dnorm(0, 2),
+    b_male ~ dnorm(0, 3),
+    b_age_male ~ dnorm(0, 0.5),
+    sigma ~ dexp(0.1)
+  ), data = d
+)
+
+precis(model2)
+
+prior <- extract.prior(model2)
+
+prior_mu <- sapply(1:500, function(i) prior$a[i] + prior$b[i]*d$age_c + prior$b_sex[i]*d$male + prior$b_age_sex[i]*d$age_c*d$male)
+
+# prior predictive check
+dens(prior_mu[d$male == 1, ], col = "orange")
+dens(d$height[d$male == 1], add = TRUE, col = "black")
+
+dens(prior_mu[d$male == 0, ], col = "seagreen")
+dens(d$height[d$male == 0], add = TRUE, col = "black")
+```
+
+```{r}
+epred_model2 <- link(model2)
+resid <- d$height - apply(epred_model2, 2, mean)
+
+plot(apply(epred_model2, 2, mean) ~ d$age, col = ifelse(d$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,
+     xlab = "Age", ylab = "Predicted Height")
+abline(h = 0, lty = 2)
+legend("topright", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+
+plot(resid ~ d$age, col = ifelse(d$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,
+     xlab = "Age", ylab = "Residuals")
+abline(h = 0, lty = 2)
+legend("topright", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+```
+
+## Question 3
+
+It is standard advice not to include an interaction term in a model unless you also include the "main effects" (i.e., the variables without the interaction term). Try refitting your model from Question 2, retaining the parameters that capture the interaction between age and sex, but removing an main effect of sex. Compare the model predictions to your model from Question 2. What happens? Can you explain it?
+
+```{r}
+model3 <- quap(
+  alist(
+    height ~ dnorm(mu, sigma),
+    mu <- a + b*age_c + b_age_male*age_c*male,   
+    a ~ dnorm(138, 40),
+    b ~ dnorm(0, 2),
+    b_age_male ~ dnorm(0, 3),
+    sigma ~ dexp(0.1)
+  ), data = d
+)
+
+precis(model3)
+```
+
+```{r}
+epred_model3 <- link(model3)
+resid <- d$height - apply(epred_model3, 2, mean)
+
+plot(apply(epred_model3, 2, mean) ~ d$age, col = ifelse(d$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,
+     xlab = "Age", ylab = "Predicted Height")
+abline(h = 0, lty = 2)
+legend("topright", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+
+plot(resid ~ d$age, col = ifelse(d$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,
+     xlab = "Age", ylab = "Residuals")
+abline(h = 0, lty = 2)
+legend("topright", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+```
+
+## Question 4
+
+An unintuitive aspect of interactions is that they can appear in statistical models as non-linearity in a "main effect"--and vice-versa! To see an example, imagine that there was an imbalance in the ages of males and females in the sample.
+
+```{r}
+selection <- ifelse(d$male == 1 & d$age < median(d$age) | 
+d$male == 0 & d$age > median(d$age), 1, 0)
+
+d2 <- d[selection == 1, ]
+
+plot(d2$height ~ d2$age, col = ifelse(d2$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,  # solid circle points
+     xlab = "Age", ylab = "Height",
+     main = "")
+legend("topleft", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+```
+
+Now I want you to fit two models:
+
+(1) A model that predicts height using age and sex, with a *linear* relationship between age and height for both males and females.
+
+```{r}
+model4 <- quap(
+  alist(
+    height ~ dnorm(mu, sigma),
+    mu <- a + b*age_c + b_male*male + b_age_male*age_c*male,
+    a ~ dnorm(138, 40),
+    b ~ dnorm(0, 2),
+    b_male ~ dnorm(0, 3),
+    b_age_male ~ dnorm(0, 0.5),
+    sigma ~ dexp(0.1)
+  ), data = d2
+)
+
+precis(model4)
+```
+
+(2) A model that predicts height using age and sex, with a non-linear relationship between age and height for males and females.
+
+```{r}
+model5 <- quap(
+  alist(
+    height ~ dnorm(mu, sigma),
+    mu <- a + b*age_c + b2*age_c^2 + b_male*male + b_age_male*age_c*male + b_age_male2*age_c^2*male,
+    a ~ dnorm(138, 40),
+    b ~ dnorm(0, 2),
+    b2 ~ dnorm(0, 0.5),
+    b_male ~ dnorm(0, 3),
+    b_age_male ~ dnorm(0, 0.5),
+    b_age_male2 ~ dnorm(0, 0.5),
+    sigma ~ dexp(0.1)
+  ), data = d2
+)
+
+precis(model5)
+```
+
+Compare the summaries of the two models, and compare them using PSIS LOOCV or WAIC. What do you notice? Can you explain it?
+
+```{r}
+compare(model4, model5)
+```
+
+```{r}
+epred_model4 <- link(model4)
+epred_model5 <- link(model5)
+
+plot(apply(epred_model4, 2, mean) ~ d2$age, col = ifelse(d2$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,
+     xlab = "Age", ylab = "Predicted Height")
+abline(h = 0, lty = 2)
+legend("topright", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+
+plot(apply(epred_model5, 2, mean) ~ d2$age, col = ifelse(d2$male == 0, col.alpha("seagreen", 0.7),
+ col.alpha("orange", 0.7)), 
+     pch = 16,
+     xlab = "Age", ylab = "Predicted Height")
+abline(h = 0, lty = 2)
+legend("topright", legend = c("Female", "Male"), 
+       col = c("seagreen", "orange"), pch = 16)
+```
+
+## Question 5
+
+An important consequence of interactions (as well as non-linearity) is that there will no longer be a 1:1 mapping between model parameters and the estimand (e.g., the expected increase in height for a one-year increase in age). Instead, we will need to compute "marginal effects".
+
+To get the average marginal effect of age on height, follow these steps, using your fit model from Question 2:
+
+1. For each individual in the sample, compute the model-predicted height at their actual age. I recommend using the `link` function to do this.
+
+```{r}
+epred_model2 <- link(model2)
+```
+
+2. For each individual in the sample, compute the model-predicted height at their actual age plus one year. You can do this by modifying the data used in step 1, like so:
+
+```{r, eval=FALSE}
+newdata <- data.frame(age = d$age + 1, male = d$male)
+pred_age_plus_one <- link(model, data = newdata)
+```
+
+```{r}
+newdata <- data.frame(age_c = d$age_c + 1, male = d$male)
+pred_age_plus_one <- link(model2, data = newdata)
+```
+
+3. Compute the difference between the predicted heights in step 2 and step 1. This is the marginal effect of age on height for each individual.
+
+```{r}
+marginal_effect <- pred_age_plus_one - epred_model2
+```
+
+4. Take the average of the marginal effects from step 3 across individuals.
+
+```{r}
+AME <- apply(marginal_effect, 2, mean)
+```
+
+Finally, summarize the average marginal effect of age on height. How does this estimate compare to the model parameters?
+
+```{r}
+dens(AME)
+precis(AME)
+```
+
