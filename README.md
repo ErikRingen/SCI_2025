@@ -24,6 +24,7 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 | Week 07: Information, Prediction, and Model Comparison | 4 April  | Rethinking Ch. 7 (pp. 191-235) | https://youtu.be/tO4oYTGj36I | [Homework 5](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW5.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW5_solutions.pdf)
 | Week 08: Interactions and non-linearity | 11 April  | Rethinking Ch. 8 (pp. 237-260) | https://youtu.be/EG44N2jHzi8 | [Homework 6](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW6.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW6_solutions.pdf)
 | spring break |
+| spring break |
 | Week 09: Markov Chain Monte Carlo | 2 May  | Rethinking Ch. 9 (pp. 263-296) | https://youtu.be/EVpuOrG2Clc | [Homework 7](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW7.pdf)
 | Week 10: Generalized Linear Models | 9 May  | Rethinking Ch. 10 (pp. 299-321) | | TBA
 | Week 11: Multilevel Models | 16 May  | Rethinking Ch. 13 (pp. 399-431) | | TBA
