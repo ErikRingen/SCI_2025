@@ -1,0 +1,69 @@
+---
+title: "SCI 2025: Homework 8"
+format: 
+  pdf:
+    geometry: margin=1in
+    fontsize: 12pt
+    linestretch: 1.5
+    include-in-header:
+      text: |
+        \usepackage{amsmath}
+        \usepackage{amsfonts}
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Setup
+
+In this homework, we will once again work with data from:
+
+Nettle, D. (1998). Explaining global patterns of language diversity. *Journal of Anthropological Archaeology*, 17:354–74.
+
+First, load the data into your R session.
+
+```{r, echo=TRUE}
+library(rethinking)
+data(nettle)
+head(nettle)
+```
+
+The meaning of each column in the dataset is given below:
+
+(1) country: Name of the country
+(2) num.lang: Number of recognized languages spoken
+(3) area: Area in square kilometers
+(4) k.pop: Population, in thousands
+(5) num.stations: Number of weather stations that provided data for the next two columns
+(6) mean.growing.season: Average length of growing season,in months
+(7) sd.growing.season: Standard deviation of length of growing season,in months
+
+You should use quadratic approximation via `rethinking::ulam()` for all model fitting.
+
+## Question 1:
+
+Revisit the models from Homework 2, where we tried to predict `num.lang` as a function of `k.pop`. But this time, use something other than a Gaussian distribution for the likelihood. Write down the format definition of the model, including the likelihood, priors, and any link functions (if you are using one). The choice is yours, but please explain your reasoning and assumptions.
+
+## Question 2:
+
+Perform a prior predictive check for the model you defined in Question 1. Assess both the prior predictive distribution of the outcome, as well as the prior function relating `k.pop` to `num.lang`.
+
+## Question 3:
+
+Fit the model you have defined in Question 1 (and perhaps refined after performing the prior predictive check) using `ulam()`. Evaluate the fit model using standard MCMC diagnostics. Do you notice any problems? How might you address them?
+
+## Question 4
+
+Perform a posterior predictive check for the model you fit in Question 3, like the prior check in Question 2. Assess the predictive adequacy of your model and the implied relationship between `k.pop` and `num.lang`.
+
+## Question 5
+
+Fit a new model that uses a different likelihood function, link funciton, or both. You may find it makes sense to change your priors as well.
+
+Perform posterior predictive checks for the new model. How does it compare to your initial model? If appropriate, use WAIC or PSIS to compare the models. Can you explain the results?
+
+
+
+
+
