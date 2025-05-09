@@ -1,0 +1,234 @@
+---
+title: "SCI 2025: Homework 8"
+format: 
+  pdf:
+    geometry: margin=1in
+    fontsize: 12pt
+    linestretch: 1.5
+    include-in-header:
+      text: |
+        \usepackage{amsmath}
+        \usepackage{amsfonts}
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Setup
+
+In this homework, we will once again work with data from:
+
+Nettle, D. (1998). Explaining global patterns of language diversity. *Journal of Anthropological Archaeology*, 17:354–74.
+
+First, load the data into your R session.
+
+```{r, echo=TRUE}
+library(rethinking)
+data(nettle)
+head(nettle)
+```
+
+The meaning of each column in the dataset is given below:
+
+(1) country: Name of the country
+(2) num.lang: Number of recognized languages spoken
+(3) area: Area in square kilometers
+(4) k.pop: Population, in thousands
+(5) num.stations: Number of weather stations that provided data for the next two columns
+(6) mean.growing.season: Average length of growing season,in months
+(7) sd.growing.season: Standard deviation of length of growing season,in months
+
+You should use quadratic approximation via `rethinking::ulam()` for all model fitting.
+
+## Question 1:
+
+Revisit the models from Homework 2, where we tried to predict `num.lang` as a function of `k.pop`. But this time, use something other than a Gaussian distribution for the likelihood. Write down the format definition of the model, including the likelihood, priors, and any link functions (if you are using one). The choice is yours, but please explain your reasoning and assumptions.
+
+$$
+\begin{aligned}
+\text{num_lang} &\sim \text{Poisson}(\lambda) \\
+\log(\lambda) &= \alpha + \beta \log(\text{k_pop_c}) \\
+\alpha &\sim \text{Normal}(3.7, 1) \\
+\beta &\sim \text{Beta}(2, 2)
+\end{aligned}
+$$
+
+
+```{r}
+# replace dots with underscores in column names
+names(nettle) <- gsub("\\.", "_", names(nettle))
+
+# center log(k.pop)
+nettle$log_k_pop <- log(nettle$k_pop)
+nettle$log_k_pop_c <- nettle$log_k_pop - mean(nettle$log_k_pop)
+
+# because we are doing a log-log model (log-transformed predictor, log-link),
+# a slope of 1 means that a 1% increase in k.pop will result in a 1% increase in num.lang
+# I think it is unrealistic, and the slope (also called the elasticity) should be less than 1
+# at the same time, I am confident that the slope is positive
+
+mean(log(nettle$num_lang))
+
+model1 <- ulam(
+    alist(
+        num_lang ~ dpois(lambda),
+        log(lambda) <- a + b * log_k_pop_c,
+        a ~ dnorm(3.7, 1),
+        b ~ dbeta(2, 2)
+    ),
+    data = nettle, chains = 4, cores = 4,
+    log_lik = TRUE
+)
+```
+
+```{r}
+precis(model1)
+```
+
+## Question 2:
+
+Perform a prior predictive check for the model you defined in Question 1. Assess both the prior predictive distribution of the outcome, as well as the prior function relating `k.pop` to `num.lang`.
+
+```{r}
+# prior predictive check
+prior <- extract.prior(model1)
+y_prior_preds <- sapply(1:length(prior$a), function(i) rpois(nrow(nettle), exp(prior$a[i] + prior$b[i] * nettle$log_k_pop_c)))
+
+
+str(y_prior_preds)
+
+dens(y_prior_preds[,1], xlab = "num_lang", ylab = "density", col = col.alpha("black", 0.2), ylim = c(0, 0.1), xlim = c(0, max(nettle$num_lang)))
+for (i in 2:100) {
+    dens(y_prior_preds[,i], add = TRUE, col = col.alpha("black", 0.2))
+}
+
+dens(nettle$num_lang, col = "orange", add = T, lwd = 2)
+```
+
+```{r}
+# prior function
+log_k_pop_seq <- seq(min(nettle$log_k_pop_c), max(nettle$log_k_pop_c), length.out = 30)
+
+prior_preds <- sapply(log_k_pop_seq, function(x) exp(prior$a + prior$b * x))
+str(prior_preds)
+
+plot(log_k_pop_seq, prior_preds[1,], type = "l", col = "black", lwd = 2, xlab = "log_k_pop_c", ylab = "num_lang", ylim = c(0, max(nettle$num_lang)))
+for (i in 2:100) {
+    lines(log_k_pop_seq, prior_preds[i,], col = col.alpha("black", 0.2))
+}
+
+points(nettle$log_k_pop_c, nettle$num_lang, col = col.alpha("orange", 0.7), pch = 16)
+```
+
+## Question 3:
+
+Fit the model you have defined in Question 1 (and perhaps refined after performing the prior predictive check) using `ulam()`. Evaluate the fit model using standard MCMC diagnostics. Do you notice any problems? How might you address them?
+
+```{r}
+show(model1); precis(model1)
+traceplot(model1)
+pairs(model1)
+```
+
+## Question 4
+
+Perform a posterior predictive check for the model you fit in Question 3, like the prior check in Question 2. Assess the predictive adequacy of your model and the implied relationship between `k.pop` and `num.lang`.
+
+```{r}
+# posterior predictive check
+post <- extract.samples(model1)
+
+y_post_preds <- sapply(1:length(post$a), function(i) rpois(nrow(nettle), exp(post$a[i] + post$b[i] * nettle$log_k_pop_c)))
+
+dev.off() # reset R graphics device
+
+dens(y_post_preds[,1], xlab = "num_lang", ylab = "density", col = col.alpha("black", 0.2), xlim = c(0, max(nettle$num_lang)), ylim = c(0, 0.015))
+for (i in 2:100) {
+    dens(y_post_preds[,i], add = TRUE, col = col.alpha("black", 0.2))
+}
+
+dens(nettle$num_lang, col = "orange", add = T, lwd = 2)
+```
+
+```{r}
+# posterior function relating log_k_pop_c to num_lang
+
+log_k_pop_seq <- seq(min(nettle$log_k_pop_c), max(nettle$log_k_pop_c), length.out = 30)
+
+post_preds <- sapply(log_k_pop_seq, function(x) exp(post$a + post$b * x))
+
+plot(log_k_pop_seq, post_preds[1,], type = "l", col = "black", lwd = 2, xlab = "log_k_pop_c", ylab = "num_lang", ylim = c(0, max(nettle$num_lang)))
+for (i in 2:100) {
+    lines(log_k_pop_seq, post_preds[i,], col = col.alpha("black", 0.2))
+}
+
+points(nettle$log_k_pop_c, nettle$num_lang, col = col.alpha("orange", 0.7), pch = 16)
+```
+
+## Question 5
+
+Fit a new model that uses a different likelihood function, link funciton, or both. You may find it makes sense to change your priors as well.
+
+```{r}
+# fit a new model with negative binomial likelihood (aka gamma-poisson). This includes the inverse dispersion parameter phi. Larger phi = closer to poisson.
+
+model2 <- ulam(
+    alist(
+        num_lang ~ dgampois(mu, phi),
+        log(mu) <- a + b * log_k_pop_c,
+        phi ~ dexp(1),
+        a ~ dnorm(3.7, 1),
+        b ~ dbeta(2, 2)
+    ),
+    data = nettle, chains = 4, cores = 4,
+    log_lik = TRUE
+)
+```
+
+```{r}
+summary(model2)
+```
+
+Perform posterior predictive checks for the new model. How does it compare to your initial model?
+
+```{r}
+# posterior predictive check
+post2 <- extract.samples(model2)
+
+y_post_preds <- sapply(1:length(post2$a), function(i) rgampois(nrow(nettle), mu = exp(post2$a[i] + post2$b[i] * nettle$log_k_pop_c), scale = post2$phi[i]))
+
+
+dens(y_post_preds[,1], xlab = "num_lang", ylab = "density", col = col.alpha("black", 0.2), xlim = c(0, max(nettle$num_lang)), ylim = c(0, 0.015))
+for (i in 2:100) {
+    dens(y_post_preds[,i], add = TRUE, col = col.alpha("black", 0.2))
+}
+
+dens(nettle$num_lang, col = "orange", add = T, lwd = 2)
+
+# checck the function relating log_k_pop_c to num_lang
+
+log_k_pop_seq <- seq(min(nettle$log_k_pop_c), max(nettle$log_k_pop_c), length.out = 30)
+
+post_preds <- sapply(log_k_pop_seq, function(x) exp(post2$a + post2$b * x))
+
+plot(log_k_pop_seq, post_preds[1,], type = "l", col = "black", lwd = 2, xlab = "log_k_pop_c", ylab = "num_lang", ylim = c(0, max(nettle$num_lang)))
+for (i in 2:100) {
+    lines(log_k_pop_seq, post_preds[i,], col = col.alpha("black", 0.2))
+}
+
+points(nettle$log_k_pop_c, nettle$num_lang, col = col.alpha("orange", 0.7), pch = 16)
+```
+
+If appropriate, use WAIC or PSIS to compare the models. Can you explain the results?
+
+```{r}
+PSIS(model1)
+PSIS(model2)
+```
+
+Notice that these are of different orders of magnitude. We can't actually compare them with this tool, because they aggregate the data different: Poisson treats each language as a single observation (in a sense), while the gamma-poisson treats each row of the data as a single observation.
+
+
+
+
