@@ -1,5 +1,5 @@
 ---
-title: "SCI 2025: Homework 8"
+title: "SCI 2025: Homework 9"
 format: 
   pdf:
     geometry: margin=1in
