@@ -28,7 +28,7 @@ The primary text for this course is the [2nd edition of Statistical Rethinking](
 | Week 09: Markov Chain Monte Carlo | 2 May  | Rethinking Ch. 9 (pp. 263-296) | https://youtu.be/EVpuOrG2Clc | [Homework 7](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW7.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/tree/main/homeworks#:~:text=2%20weeks%20ago-,HW7_solutions.qmd,-hw7%20solutions)
 | Week 10: Generalized Linear Models | 9 May  | Rethinking Ch. 10.2-10.4 (pp. 312-321), Rethinking Ch. 11.1-11.2 (pp. 342-359) | https://youtu.be/JUDI-cg05Jw | [Homework 8](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW8.qmd); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW8_solutions.qmd)
 | Week 11: Multilevel Models | 16 May  | Rethinking Ch. 13 (pp. 399-431) | None | [Homework 9](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW9.pdf); [Solutions](https://github.com/ErikRingen/SCI_2025/blob/main/homeworks/HW9_solutions.qmd)
-| Week 12: Gaussian Processes & Generalized Additive Models | 23 May | Rethinking Ch. 14 (pp. 435-485) | | TBA
+| Week 12: Gaussian Processes & Generalized Additive Models | 23 May | Rethinking Ch. 14 (pp. 435-485) | | No homework
 
 ## Prerequisites
 
